@@ -1,6 +1,10 @@
-import { combineReducers } from "redux";
-import personReducer from "./person/person.reducer";
+import { combineReducers } from "@reduxjs/toolkit";
+import { personListReducer } from "./person/person-slice";
 
-export default combineReducers({
-  person: personReducer
-});
+const reducers = {
+  person: personListReducer
+};
+
+const rootReducer = combineReducers(reducers);
+
+export default rootReducer;

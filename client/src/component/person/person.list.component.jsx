@@ -1,29 +1,25 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPerson } from "../../redux/person/person.action";
+import { asyncGetAllPesonList } from "../../redux/person/person-slice";
 
 const PersonListComponent = () => {
 
   const dispatch = useDispatch();
-  const [personList, setpersonList] = useState([]);
-  const personData = useSelector(state => state.person.personList);
-  console.log(personData);
+  const personList = useSelector(state => state.person.all_personList);
 
   useEffect(() => {
-    dispatch(getPerson());
-    setpersonList(personData);
-    console.log(personList);
+    dispatch(asyncGetAllPesonList("123213213"));
   }, []);
 
-  if(personData === [] || personData === null) {
+  if(personList === [] || personList === null) {
     return (
       <div>no data</div>
     )
   } else {
     return(
       <div className="person-list-area">
-        {personData.map((list, index) => (
+        {personList.map((list, index) => (
           <p>{list.person_name}</p>
         ))}
       </div>
