@@ -1,21 +1,22 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { useState } from "react";
-import axios from 'axios';
+import { useDispatch } from 'react-redux'
 import FormInputComponent from "../../resuable/form-input/formInput.component";
 import ButtonComponent from "../../resuable/button/button.component";
 import PersonCategoryComponent from "../../component/create/person.category.component";
+import { asyncCreatePersonList } from "../../redux/person/person-slice";
+
 const CreateComponent = () => {
-  const server = "http://localhost:5000";
+  
+  const dispatch = useDispatch();
   const [person_name, setpersonName] = useState("");
   const [person_position, setpersonPosition] = useState("");
   const [person_level, setpersonCategory] = useState("");
 
   const createPerson = () => {
     const person = {person_name, person_position, person_level};
-
-    axios.post(`${server}/record/add`, person)
-      .then((res) => console.log(res.data));
+    dispatch(asyncCreatePersonList(person));
 
     setpersonName("");
     setpersonPosition("");

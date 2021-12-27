@@ -9,7 +9,7 @@ const FormInputComponent = (props) => {
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         onChange={props.onChange}
-        value={props.value}
+        placeholder={props.placeholder}
       />
     </InputGroup>
   );

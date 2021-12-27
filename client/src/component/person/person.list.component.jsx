@@ -1,7 +1,9 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncGetAllPesonList } from "../../redux/person/person-slice";
+import PersonListItemComponent from "./person.list.item.component";
 
 const PersonListComponent = () => {
 
@@ -9,7 +11,7 @@ const PersonListComponent = () => {
   const personList = useSelector(state => state.person.all_personList);
 
   useEffect(() => {
-    dispatch(asyncGetAllPesonList("123213213"));
+    dispatch(asyncGetAllPesonList());
   }, []);
 
   if(personList === [] || personList === null) {
@@ -19,9 +21,23 @@ const PersonListComponent = () => {
   } else {
     return(
       <div className="person-list-area">
-        {personList.map((list, index) => (
-          <p>{list.person_name}</p>
-        ))}
+        <Table>
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Level</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {personList.map(({id, ...otherPersonListComponentProps}, index) => (
+            <PersonListItemComponent key={ index } { ...otherPersonListComponentProps } num = { index }/>
+          ))}
+        </tbody>
+        </Table>
       </div>
     )
   }
