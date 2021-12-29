@@ -1,17 +1,18 @@
 import React from "react";
-import { FormControl, InputGroup } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const FormInputComponent = (props) => {
   return (
-    <InputGroup className="mb-3">
-      <InputGroup.Text id="basic-addon1">{props.label}</InputGroup.Text>
-      <FormControl
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Label>{ props.label }</Form.Label>
+      <Form.Control
         aria-label="Default"
         aria-describedby="inputGroup-sizing-default"
         onChange={props.onChange}
         placeholder={props.placeholder}
       />
-    </InputGroup>
+    </Form.Group>
+      
   );
 };
 

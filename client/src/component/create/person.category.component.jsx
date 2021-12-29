@@ -3,8 +3,7 @@ import { Form } from "react-bootstrap";
 
 const PersonCategoryComponent = ({ handleChange }) => {
   return (
-    <div className="person-category-area">
-      <Form style={{ display: "flex" }}>
+    <div className="person-category-area" style={{ display: "flex" }}>
         {["Intern", "Junior", "Senior"].map((category, index) => (
           <div key={`inline-${index}`} className="mb-3">
             <Form.Check
@@ -18,7 +17,6 @@ const PersonCategoryComponent = ({ handleChange }) => {
             />
           </div>
         ))}
-      </Form>
     </div>
   );
 };
