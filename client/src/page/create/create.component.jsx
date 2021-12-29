@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Form, Alert } from "react-bootstrap";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FormInputComponent from "../../resuable/form-input/formInput.component";
 import ButtonComponent from "../../resuable/button/button.component";
 import PersonCategoryComponent from "../../component/create/person.category.component";
@@ -9,6 +9,7 @@ import { asyncCreatePersonList } from "../../redux/person/person-slice";
 
 const CreateComponent = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.person.loading);
   const [errImageType, seterrImageType] = useState("0");
   const [person, setperson] = useState(
     {
@@ -26,8 +27,9 @@ const CreateComponent = () => {
     formData.append("person_position", person.person_level);
     formData.append("person_level", person.person_level);
     formData.append("person_photo", person.person_photo, person.person_photo.name);
-    console.log(person, formData.getAll("person_photo"));
+
     dispatch(asyncCreatePersonList(formData));
+
   };
 
   const handleLevel = (category) => {
@@ -46,6 +48,10 @@ const CreateComponent = () => {
       seterrImageType("0");
     }
   };
+
+  useEffect(() => {
+    console.log(loading);
+  }, [])
 
   return (
     <Container>

@@ -1,9 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { PersonListService } from '../../service/personListService';
 
+export const PersonLoadingId = {
+  CREATE_PERSON : "createPerson"
+}
+
 const initialState = {
   all_personList: [],
-  personListById: []
+  personListById: [],
+  loading: []
 };
 
 export const asyncCreatePersonList = createAsyncThunk(
@@ -62,6 +67,10 @@ export const personListSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(asyncGetAllPesonList.fulfilled, (state, action) => {
       state.all_personList = action.payload.data
+    })
+
+    builder.addCase(asyncCreatePersonList.fulfilled, (state, action) => {
+      state.loading = action.payload.data
     })
 
     builder.addCase(asyncGetPersonListByid.fulfilled, (state, action) => {

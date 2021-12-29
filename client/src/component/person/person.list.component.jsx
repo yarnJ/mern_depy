@@ -29,6 +29,7 @@ const PersonListComponent = () => {
             <th>Position</th>
             <th>Level</th>
             <th>Action</th>
+            <th>Avatar</th>
           </tr>
         </thead>
 

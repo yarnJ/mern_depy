@@ -83,9 +83,15 @@ recordRoutes.route("/record/add").post(upload.single('person_photo'), (req, res)
     person_name: req.body.person_name,
     person_position: req.body.person_position,
     person_level: req.body.person_level,
-    person_photo: req.file.filename
+    person_photo: req.file.filename,
+    person_path: req.file.destination
   };
-  console.log(req.file.filename);
+
+  db_connect.collection("records").insertOne(myobj)
+   .then(() => res.json(myobj.person_name + " is added"))
+   .catch((err) => {
+    throw err
+   })
 });
 
 // This section will help you update a record by id.

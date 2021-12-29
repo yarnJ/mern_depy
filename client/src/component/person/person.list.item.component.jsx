@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { Image } from "react-bootstrap";
 import ButtonComponent from "../../resuable/button/button.component";
 
-const PersonListItemComponent = ({ num, _id, person_name, person_position, person_level }) => {
+const PersonListItemComponent = ({ num, _id, person_name, person_position, person_level, person_photo, person_path }) => {
 
   const navigate = useNavigate();
 
@@ -16,6 +17,9 @@ const PersonListItemComponent = ({ num, _id, person_name, person_position, perso
       <td>{ person_name }</td>
       <td>{ person_position }</td>
       <td>{ person_level }</td>
+      <td>
+        <Image src={ `http://localhost:5000/${ person_path }/${ person_photo }` }/>
+      </td>
       <td>
         <div>
           <ButtonComponent variant="primary" value="Edit" size="sm" onClick={ editPerson }/>
