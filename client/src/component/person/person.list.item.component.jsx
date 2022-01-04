@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { Image } from "react-bootstrap";
 import ButtonComponent from "../../resuable/button/button.component";
+import "../../page/person/person.style.scss";
 
 const PersonListItemComponent = ({ num, _id, person_name, person_position, person_level, person_photo, person_path }) => {
 

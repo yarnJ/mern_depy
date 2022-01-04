@@ -59,23 +59,6 @@ recordRoutes.route("/record/:id").get(function (req, res) {
       });
 });
 
-// This section will help you create a new record.
-// recordRoutes.route("/record/add").post( function (req, response) {
-//   console.log(req.body);
-//   let db_connect = dbo.getDb();
-//   let myobj = {
-//     person_name: req.body.person_name,
-//     person_position: req.body.person_position,
-//     person_level: req.body.person_level,
-//     person_photo: req.body.person_photo
-//   };
-//   console.log();
-  // db_connect.collection("records").insertOne(myobj, function (err, res) {
-  //   if (err) throw err;
-  //   response.json(res);
-  // });
-// });
-
 recordRoutes.route("/record/add").post(upload.single('person_photo'), (req, res) => {
   let db_connect = dbo.getDb();
   
@@ -122,6 +105,33 @@ recordRoutes.route("/:id").delete((req, response) => {
     if (err) throw err;
     console.log("1 document deleted");
     response.status(obj);
+  });
+});
+
+// This section will help you register a user
+recordRoutes.route("/users/add").post((req, response) => {
+  let db_connect = dbo.getDb();
+  let users = {
+    username: req.body.user_username,
+    email: req.body.user_email,
+    password: req.body.user_password
+  };
+
+  let myquery = {
+    username: req.body.user_username,
+    email: req.body.user_email 
+  }
+
+  db_connect.collection("users").findOne(myquery, function(err, result) {
+    if(result) {
+      response.json("exit")
+    } else {
+      db_connect.collection("users").insertOne(users)
+      .then(() => response.json(users.username + " is registered"))
+      .catch((err) => {
+        throw err
+      })
+    }
   });
 });
 

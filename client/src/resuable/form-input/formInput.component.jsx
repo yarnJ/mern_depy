@@ -10,6 +10,7 @@ const FormInputComponent = (props) => {
         aria-describedby="inputGroup-sizing-default"
         onChange={props.onChange}
         placeholder={props.placeholder}
+        type={props.type}
       />
     </Form.Group>
       

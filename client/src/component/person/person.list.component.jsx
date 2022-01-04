@@ -14,7 +14,7 @@ const PersonListComponent = () => {
     dispatch(asyncGetAllPesonList());
   }, []);
 
-  if(personList === [] || personList === null) {
+  if(personList === [] || personList === null || personList === undefined) {
     return (
       <div>no data</div>
     )
@@ -28,8 +28,8 @@ const PersonListComponent = () => {
             <th>Name</th>
             <th>Position</th>
             <th>Level</th>
-            <th>Action</th>
             <th>Avatar</th>
+            <th>Action</th>
           </tr>
         </thead>
 
